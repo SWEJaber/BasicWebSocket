@@ -10,8 +10,17 @@ function App()
     
     const ws = new WebSocket("ws://localhost:8000");
 
-    console.log("ws: ", ws);
+    ws.onopen = event =>
+    {
+      console.log(event);
+      ws.send("I am so excited I'm connected to the server. It's like my country just won the World cup.")
+    }
     
+    ws.onmessage = message =>
+    {
+      console.log(message.data);
+    }
+
     return () => 
     {
       
